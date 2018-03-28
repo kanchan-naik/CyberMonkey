@@ -147,12 +147,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     var coinAnimationNormal:        SKAction!
     var coinAnimationSpecial:       SKAction!
     
+    let cameraNode = SKCameraNode()
+
     var lastOverlayPosition = CGPoint.zero
     var lastOverlayHeight: CGFloat = 0.0
     var levelPositionY: CGFloat = 0.0
     let motionManager = CMMotionManager()
     var xAcceleration: CGFloat = 0.0
-    let cameraNode = SKCameraNode()
     
     // Define initial state of enums
     var gameState = GameStatus.waitingForTap
@@ -173,9 +174,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     var previousNumber: Int = 0
     var questionAnswered: Int = 0
     var selectedAnswer: Int = 0
+    
+    let allTFQuestions = TFQuestionBank()
+    var TFQuestionNumber: Int = 0
+    var TFPreviousNumber: Int = 0
+    var TFQuestionAnswered: Int = 0
+    var TFSelectedAnswer: Int = 0
+
     let gameGain: CGFloat = 2.5
     var redAlertTime: TimeInterval = 0
     
+    // Label and Button Prompts for True/False Question
+    var TFLabel: SKLabelNode!
+    var TPrompt: SKSpriteNode!
+    var FPrompt: SKSpriteNode!
 
     override func didMove(to view: SKView) {
         // Load textures for spinning coins
@@ -203,8 +215,82 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         if gameState == .waitingForTap {
             bombDrop()
         }
+        let touch:UITouch = touches.first! as UITouch
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name
+        {
+            if name == "truePrompt" {
+                print("Correct Button")
+                if TFSelectedAnswer == 0 {
+                    TFLabel.text = "Correct!"
+                    TFLabel.fontColor = SKColor.green
+                    self.TPrompt.isHidden = true
+                    self.FPrompt.isHidden = true
+                    TFLabel.run(
+                        SKAction.sequence([
+                            SKAction.wait(forDuration: 1.0),
+                            SKAction.run {
+                                self.TFLabel.isHidden = true
+                                self.TFLabel.fontColor = SKColor.white
+                            }
+                            ])
+                    )
+                    boostPlayer()
+                } else {
+                    TFLabel.text = "Wrong!"
+                    TFLabel.fontColor = SKColor.red
+                    self.TPrompt.isHidden = true
+                    self.FPrompt.isHidden = true
+                    TFLabel.run(
+                        SKAction.sequence([
+                            SKAction.wait(forDuration: 1.0),
+                            SKAction.run {
+                                self.TFLabel.isHidden = true
+                                self.TFLabel.fontColor = SKColor.white
+                            }
+                            ])
+                    )
+                }
+            }
+            if name == "falsePrompt" {
+                print("False Button")
+                if TFSelectedAnswer == 1 {
+                    TFLabel.text = "Correct!"
+                    TFLabel.fontColor = SKColor.green
+                    self.TPrompt.isHidden = true
+                    self.FPrompt.isHidden = true
+                    TFLabel.run(
+                        SKAction.sequence([
+                            SKAction.wait(forDuration: 1.0),
+                            SKAction.run {
+                                self.TFLabel.isHidden = true
+                                self.TFLabel.fontColor = SKColor.white
+                            }
+                            ])
+                    )
+                    boostPlayer()
+                }
+                else {
+                    TFLabel.text = "Wrong!"
+                    TFLabel.fontColor = SKColor.red
+                    self.TPrompt.isHidden = true
+                    self.FPrompt.isHidden = true
+                    TFLabel.run(
+                        SKAction.sequence([
+                            SKAction.wait(forDuration: 1.0),
+                            SKAction.run {
+                                self.TFLabel.isHidden = true
+                                self.TFLabel.fontColor = SKColor.white
+                            }
+                            ])
+                    )
+                }
+            }
+        }
     }
-    
+
     func didBegin(_ contact: SKPhysicsContact) {
         // Separate collision events between:
         // a) player node and other node, b) projectile and other node:
@@ -234,28 +320,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             switch other.categoryBitMask {
             case PhysicsCategory.CoinNormal:
                 if let coin = other.node as? SKSpriteNode {
+                    // Collision with powerup
+                    collideWithCoin()
                     coin.removeFromParent()
-                    superBoostPlayer()
                 }
             case PhysicsCategory.CoinSpecial:
                 if let coin = other.node as? SKSpriteNode {
+                    collideWithCoin()
                     coin.removeFromParent()
-                    superBoostPlayer()
                 }
             case PhysicsCategory.PlatformNormal:
                 if let platform = other.node as? SKSpriteNode {
                     if player.physicsBody!.velocity.dy < 0 {
                         platformAction(platform, breakable: false)
-                        jumpPlayer()
-                        increaseScoreRegularPlatform()
+                       
                     }
                 }
             case PhysicsCategory.PlatformBreakable:
                 if let platform = other.node as? SKSpriteNode {
                     if player.physicsBody!.velocity.dy < 0 {
                         platformAction(platform, breakable: true)
-                        jumpPlayer()
-                        increaseScoreBreakPlatform()
                     }
                 }
             default: break
@@ -277,68 +361,90 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         // 4
         worldNode.run(action, withKey: "shake")
     }
-    
-    func fireProjectile(_ touches: Set<UITouch>) {
-        
-         //1 - Choose one of the touches to work with
-         guard let touch = touches.first else {
-         return
-         }
-        
-        for touch in touches {
-            let touchLocation = touch.location(in: self)
-            
-            //let touchLocation = touch.location(in: view) // Determines touch within scene's coordinate system
-            
-            // 2 - Set up initial location of projectile
-            let projectile = SKSpriteNode(imageNamed: "powerup_banana")
-            projectile.position = player.position
-            
-            projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
-            projectile.physicsBody?.isDynamic = true
-            projectile.physicsBody?.categoryBitMask = PhysicsCategory.Projectile
-            projectile.physicsBody?.contactTestBitMask = PhysicsCategory.Monster
-            projectile.physicsBody?.collisionBitMask = PhysicsCategory.None
-            projectile.physicsBody?.usesPreciseCollisionDetection = true
-            
-            // 3 - Determine offset of location to projectile
-            let offset = touchLocation - projectile.position
-            
-            // Prevent player from shooting down
-            // if (offset.y < 0) { return }
-            
-            // 4 - Ok to add now - you've double checked position
-            fgNode.addChild(projectile)
-            
-            // 5 - Get the direction of where to shoot
-            let direction = offset.normalized()
-            
-            // 6 - Make it shoot far enough to be guaranteed off-screen
-            let shootAmount = direction * 10000 // arbitrary amount for the projectile  to travel across the screen
-            
-            // 7 - Add the shoot amount to the current position
-            let realDest = shootAmount + projectile.position
-            
-            print("Shooting projectile")
-            
-            // 8 - Create the actions
-            let actionMove = SKAction.move(to: realDest, duration: 2.0)
-            let actionMoveDone = SKAction.removeFromParent() // Here you use this action to remove the projectile when it is no longer visible
-            projectile.run(SKAction.sequence([actionMove, actionMoveDone]))
-        }
-        
-        
-    }
-    // Projectile event after user taps the screen
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //fireProjectile(touches)
-      
-    }
-    
+
     func projectileDidCollideWithMonster(projectile: SKSpriteNode, monster: SKSpriteNode) {
         print("Hit")
         projectile.removeFromParent()
         monster.removeFromParent()
+    }
+    
+    func collideWithCoin() {
+        updateTFQuestion()
+    }
+    
+    func updateTFQuestion() {
+        TFQuestionNumber = Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
+        TFLabel.text = allTFQuestions.list[TFQuestionNumber].question
+        TFSelectedAnswer = allTFQuestions.list[TFQuestionNumber].correctAnswer
+        
+        setTFLabel()
+        setTFPowerups()
+     
+        if TFQuestionAnswered < allTFQuestions.list.count {
+            // Prevents (consecutive) repeating questions.
+            while TFPreviousNumber == TFQuestionNumber {
+                TFQuestionNumber =  Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
+            }
+            TFPreviousNumber = TFQuestionNumber
+            TFQuestionAnswered += 1
+        }
+    }
+
+    func setTFLabel() { // Put argument for the string from the question
+        TFLabel = hudNode.childNode(withName: "TFLabel") as! SKLabelNode
+        TFLabel.isHidden = false
+        TFLabel.numberOfLines = 0
+        TFLabel.text = allTFQuestions.list[TFQuestionNumber].question
+        TFLabel.run(
+            SKAction.sequence([
+                SKAction.wait(forDuration: 10.0),
+                SKAction.run {
+                    self.TFLabel.isHidden = true
+                }
+                ])
+        )
+    }
+    
+    func updateTFLabel() {
+        TFLabel.position.x = player.position.x
+        TFLabel.position.y = player.position.y - (size.height / 8)
+    }
+    
+    func setTFPowerups() {
+        TPrompt.isHidden = false
+        FPrompt.isHidden = false
+        TFLabel.run(
+            SKAction.sequence([
+                SKAction.wait(forDuration: 10.0),
+                SKAction.run {
+                    self.TPrompt.isHidden = true
+                    self.FPrompt.isHidden = true
+                }
+                ])
+        )
+    }
+    
+    func updateTFPowerups() {
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        TPrompt.position = CGPoint(x: player.position.x - screenWidth/2, y: player.position.y)
+        FPrompt.position = CGPoint(x: player.position.x + screenWidth/2, y: player.position.y)
+    }
+    
+    // 2
+    func createForegroundOverlay(_ overlayTemplate:
+        SKSpriteNode, flipX: Bool) {
+        let foregroundOverlay = overlayTemplate.copy() as! SKSpriteNode
+        lastOverlayPosition.y = lastOverlayPosition.y +
+            (lastOverlayHeight + (foregroundOverlay.size.height / 2.0))
+        lastOverlayHeight = foregroundOverlay.size.height / 2.0
+        foregroundOverlay.position = lastOverlayPosition
+        if flipX == true {
+            foregroundOverlay.xScale = -1.0
+        }
+        foregroundOverlay.zPosition = 1
+        addAnimationToOverlay (overlay: foregroundOverlay)
+        fgNode.addChild(foregroundOverlay)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -359,6 +465,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             updateScore()
             updateLevel()
             updatePlayer()
+            updateTFLabel()
+            updateTFPowerups()
             updateLava(deltaTime)
             updateExplosions(deltaTime)
             updateRedAlert(deltaTime)
@@ -400,6 +508,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func updateLevel() {
         let cameraPos = camera!.position
+        if cameraPos.y > levelPositionY - (size.height * 0.55) {
+            addRandomCoinForegroundOverlay()
+        }
         if cameraPos.y > levelPositionY - (size.height * 0.55) {
             createBackgroundOverlay()
             while lastOverlayPosition.y < levelPositionY {
@@ -544,21 +655,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         
         hudNode = worldNode.childNode(withName: "Hud")
         currentScore = hudNode.childNode(withName: "ScoreLabel") as! SKLabelNode
+        TFLabel = hudNode.childNode(withName: "TFLabel") as! SKLabelNode
+        TFLabel.numberOfLines = 2
+        TFLabel.isHidden = true
+        TPrompt = hudNode.childNode(withName: "TruePrompt") as! SKSpriteNode
+        TPrompt.name = "truePrompt"
+        TPrompt.isHidden = true
+        TPrompt.isUserInteractionEnabled = false
+        FPrompt = hudNode.childNode(withName: "FalsePrompt") as! SKSpriteNode
+        FPrompt.name = "falsePrompt"
+        FPrompt.isUserInteractionEnabled = false
+        FPrompt.isHidden = true
+       
         addChild(cameraNode)
         camera = cameraNode
     }
     
    func setupSecondChanceQuiz() {
-    // Menu setup with stackView
-    let screenSize = UIScreen.main.bounds
-    let screenWidth = screenSize.width
-    let screenHeight = screenSize.height
-    gameMenuView.frame = CGRect(x: screenWidth / 4 , y: 100, width: screenWidth * 0.5 , height: screenHeight * 0.8)
-    self.view!.addSubview(gameMenuView)
-    gameMenuView.delegate = self
-    gameState = .paused
-    physicsWorld.speed = 0
-    updateQuestion()
+        // Menu setup with stackView
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        gameMenuView.frame = CGRect(x: screenWidth / 4 , y: 100, width: screenWidth * 0.5 , height: screenHeight * 0.8)
+        self.view!.addSubview(gameMenuView)
+        gameMenuView.delegate = self
+        gameState = .paused
+        physicsWorld.speed = 0
+        updateQuestion()
     }
     
     func didTapOnView(at index: Int) {
@@ -608,7 +731,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         
         if questionAnswered < allQuestions.list.count {
             // Prevents repeating questions.
-            questionNumber = Int(arc4random_uniform(UInt32(allQuestions.list.count)))
             while previousNumber == questionNumber {
                 questionNumber =  Int(arc4random_uniform(UInt32(allQuestions.list.count)))
             }
@@ -657,7 +779,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                     return
                 }
                 let acceleration = accelerometerData.acceleration
-                self.xAcceleration = (CGFloat(acceleration.x) * 1.75) +
+                self.xAcceleration = (CGFloat(acceleration.x) * 2.4) +
                     (self.xAcceleration * 0.25)
         })
     }
@@ -743,11 +865,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func platformAction(_ sprite: SKSpriteNode, breakable: Bool) {
         let amount = CGPoint(x: 0, y: -75.0)
+        let blueTrail = self.addTrail(name: "PlayerTrail")
+        self.run(SKAction.sequence([
+            SKAction.wait(forDuration: 3.0),
+            SKAction.run() {
+                self.removeTrail(trail: blueTrail)
+            }
+            ]))
         let action = SKAction.screenShakeWithNode(sprite,
                                                   amount: amount, oscillations: 10, duration: 2.0)
         sprite.run(action)
         if breakable == true {
             sprite.removeFromParent()
+        }
+        jumpPlayer()
+        increaseScoreRegularPlatform()
+    }
+    
+    func addRandomCoinForegroundOverlay() {
+        let randomCoin = Int(arc4random_uniform(100)+1)
+        print(randomCoin)
+        if randomCoin <= 40 {
+            if TFLabel.isHidden {
+                createForegroundOverlay(coin, flipX: false)
+            }
+        }
+        if randomCoin >= 60 {
+            if TFLabel.isHidden {
+                createForegroundOverlay(coinSpecial, flipX: false)
+            }
         }
     }
     
@@ -759,14 +905,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         let break5AcrossPercentage = 68
         let breakArrowPercentage = 85
         let random = Int(arc4random_uniform(100)+1)
-        let randomCoin = Int(arc4random_uniform(100)+1)
-        
-        if randomCoin <= 10 {
-            createForegroundOverlay(coin, flipX: false)
-        }
-        if randomCoin >= 90 {
-            createForegroundOverlay(coinSpecial, flipX: false)
-        }
         
         // Platform5Across
         if random <= platform5AcrossPercentage {
@@ -834,21 +972,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         let coinScene = SKScene(fileNamed: fileName)!
         let coinTemplate = coinScene.childNode(withName: "Coin")
         return coinTemplate as! SKSpriteNode
-    }
-    
-    // 2
-    func createForegroundOverlay(_ overlayTemplate:
-        SKSpriteNode, flipX: Bool) {
-        let foregroundOverlay = overlayTemplate.copy() as! SKSpriteNode
-        lastOverlayPosition.y = lastOverlayPosition.y +
-            (lastOverlayHeight + (foregroundOverlay.size.height / 2.0))
-        lastOverlayHeight = foregroundOverlay.size.height / 2.0
-        foregroundOverlay.position = lastOverlayPosition
-        if flipX == true {
-            foregroundOverlay.xScale = -1.0
-        }
-        addAnimationToOverlay (overlay: foregroundOverlay)
-        fgNode.addChild(foregroundOverlay)
     }
 
     func createBackgroundOverlay() {

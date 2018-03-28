@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		841522C520696FF800BED8FA /* TF.sks in Resources */ = {isa = PBXBuildFile; fileRef = 841522C420696FF800BED8FA /* TF.sks */; };
+		841522C72069794700BED8FA /* TFQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841522C62069794700BED8FA /* TFQuestionBank.swift */; };
+		841522CA2069796D00BED8FA /* TFQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841522C92069796D00BED8FA /* TFQuestion.swift */; };
 		841822512041F3BE00CCC6E4 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841822502041F3BE00CCC6E4 /* GameState.swift */; };
 		841E477B2051ADA8005A43A4 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E477A2051ADA8005A43A4 /* Question.swift */; };
 		841E477D2051AEA2005A43A4 /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E477C2051AEA2005A43A4 /* QuestionBank.swift */; };
@@ -18,6 +20,7 @@
 		847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDA820448FC8002DEA29 /* SmokeTrail.sks */; };
 		8499845F2043836500A35957 /* Platform2Across.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8499845E2043836500A35957 /* Platform2Across.sks */; };
 		849984612043838700A35957 /* Platform3Across.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849984602043838700A35957 /* Platform3Across.sks */; };
+		849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849D57DE20697AB400D80ED1 /* PlayerTrail.sks */; };
 		84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */; };
 		84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92760203E87FB00711A66 /* AppDelegate.swift */; };
 		84C92763203E87FB00711A66 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84C92762203E87FB00711A66 /* GameScene.sks */; };
@@ -51,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		841522C420696FF800BED8FA /* TF.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TF.sks; sourceTree = "<group>"; };
+		841522C62069794700BED8FA /* TFQuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFQuestionBank.swift; sourceTree = "<group>"; };
+		841522C92069796D00BED8FA /* TFQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFQuestion.swift; sourceTree = "<group>"; };
 		841822502041F3BE00CCC6E4 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		841E477A2051ADA8005A43A4 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		841E477C2051AEA2005A43A4 /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 		847FEDA820448FC8002DEA29 /* SmokeTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeTrail.sks; sourceTree = "<group>"; };
 		8499845E2043836500A35957 /* Platform2Across.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform2Across.sks; sourceTree = "<group>"; };
 		849984602043838700A35957 /* Platform3Across.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform3Across.sks; sourceTree = "<group>"; };
+		849D57DE20697AB400D80ED1 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		84C9275D203E87FB00711A66 /* CyberMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyberMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92760203E87FB00711A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,12 +111,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		841522C82069794C00BED8FA /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				841522C62069794700BED8FA /* TFQuestionBank.swift */,
+				841522C92069796D00BED8FA /* TFQuestion.swift */,
+				841E477C2051AEA2005A43A4 /* QuestionBank.swift */,
+				841E477A2051ADA8005A43A4 /* Question.swift */,
+			);
+			path = Question;
+			sourceTree = "<group>";
+		};
 		847FED99204489FA002DEA29 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
 				847FEDA320448A4A002DEA29 /* Assets.xcassets */,
 				847FEDA620448A63002DEA29 /* Lava.sks */,
 				847FEDA820448FC8002DEA29 /* SmokeTrail.sks */,
+				849D57DE20697AB400D80ED1 /* PlayerTrail.sks */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -136,8 +154,7 @@
 			children = (
 				84C92778203E8B4100711A66 /* Scene Files */,
 				84C92760203E87FB00711A66 /* AppDelegate.swift */,
-				841E477A2051ADA8005A43A4 /* Question.swift */,
-				841E477C2051AEA2005A43A4 /* QuestionBank.swift */,
+				841522C82069794C00BED8FA /* Question */,
 				84C92764203E87FB00711A66 /* Actions.sks */,
 				84C92762203E87FB00711A66 /* GameScene.sks */,
 				84C92766203E87FB00711A66 /* GameScene.swift */,
@@ -268,6 +285,7 @@
 				847FEDA520448A4A002DEA29 /* Assets.xcassets in Resources */,
 				84C9276E203E87FB00711A66 /* Assets.xcassets in Resources */,
 				84C92771203E87FB00711A66 /* LaunchScreen.storyboard in Resources */,
+				849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */,
 				84E48590203F275C00F9A1E4 /* BreakArrow.sks in Resources */,
 				847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */,
 				841522C520696FF800BED8FA /* TF.sks in Resources */,
@@ -293,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				841E477B2051ADA8005A43A4 /* Question.swift in Sources */,
+				841522C72069794700BED8FA /* TFQuestionBank.swift in Sources */,
 				84E370ED205891AD001E6C2C /* CGPoint+Extensions.swift in Sources */,
 				84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */,
 				84E370E9205891AD001E6C2C /* SKTTimingFunctions.swift in Sources */,
@@ -306,6 +325,7 @@
 				84E370EB205891AD001E6C2C /* SKAction+SpecialEffects.swift in Sources */,
 				841822512041F3BE00CCC6E4 /* GameState.swift in Sources */,
 				841E477D2051AEA2005A43A4 /* QuestionBank.swift in Sources */,
+				841522CA2069796D00BED8FA /* TFQuestion.swift in Sources */,
 				84C92769203E87FB00711A66 /* GameViewController.swift in Sources */,
 				84E370EE205891AD001E6C2C /* SKTEffects.swift in Sources */,
 				84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */,
