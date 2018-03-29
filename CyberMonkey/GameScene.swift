@@ -25,7 +25,6 @@ struct PhysicsCategory {
     static let CoinSpecial: UInt32 = 0b10000  // 16
     static let Edges: UInt32 = 0b100000 // 32
     static let Monster: UInt32 = 0b1000000 // 64
-    static let Projectile: UInt32 = 0b10000000 // 128
 }
 
 extension BinaryInteger {
@@ -194,6 +193,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     let soundExplodingPlatform = SKAction.playSoundFileNamed("exploding.mp3", waitForCompletion: true)
     let soundJump = SKAction.playSoundFileNamed("jump.caf", waitForCompletion: true)
     let soundBoost = SKAction.playSoundFileNamed("jetpack.mp3", waitForCompletion: true)
+    let soundMonsterCrash = SKAction.playSoundFileNamed("monster-crash.mp3", waitForCompletion: true)
+    let soundMonsterJump = SKAction.playSoundFileNamed("jumponmonster.mp3", waitForCompletion: true)
+
     
     override func didMove(to view: SKView) {
         playBackgroundMusic(name: "SpaceGame.mp3")
@@ -299,8 +301,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        let other = contact.bodyA.categoryBitMask ==
-         PhysicsCategory.Player ? contact.bodyB : contact.bodyA
+        let other = contact.bodyA.categoryBitMask == PhysicsCategory.Player ? contact.bodyB : contact.bodyA
         switch other.categoryBitMask {
         case PhysicsCategory.CoinNormal:
             if let coin = other.node as? SKSpriteNode {
@@ -327,6 +328,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                     platformAction(platform, breakable: true)
                 }
             }
+        case PhysicsCategory.Monster:
+            if let monster = other.node as? SKSpriteNode {
+                if player.physicsBody!.velocity.dy < 0 {
+                    run(soundMonsterJump)
+                    jumpPlayer()
+                    monster.removeFromParent()
+                }
+                else {
+                    run(soundMonsterCrash)
+                    monster.removeFromParent()
+                    setupSecondChanceQuiz()
+                }
+            }
         default: break
         }
     }
@@ -348,12 +362,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func spawnEnemy() {
         let enemy = SKSpriteNode(imageNamed: "alien_side_green")
-        enemy.position = CGPoint(x: player.position.x + size.width/2, y: levelPositionY/2)
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+        enemy.physicsBody?.isDynamic = true
+        enemy.physicsBody?.affectedByGravity = false
+        enemy.physicsBody?.categoryBitMask = PhysicsCategory.Monster
+        enemy.physicsBody?.contactTestBitMask = PhysicsCategory.Player
+        enemy.physicsBody?.collisionBitMask = 0
+        enemy.position = CGPoint(x: player.position.x + size.width/2, y: player.position.y + self.size.height / 2)
         fgNode.addChild(enemy)
-        let actionMove = SKAction.move(
-            to: CGPoint(x: -enemy.size.width/2, y: enemy.position.y),
+        let actionMidMove = SKAction.move(
+            to: CGPoint(x: -enemy.size.width, y: enemy.position.y),
             duration: 2.0)
-        enemy.run(actionMove)
+        let actionMove = SKAction.move(
+            to: CGPoint(x: enemy.size.width, y: enemy.position.y),
+            duration: 2.0)
+        let sequence = SKAction.sequence([actionMidMove, actionMove])
+        let repeatAction = SKAction.repeatForever(sequence)
+        enemy.run(repeatAction)
     }
     
     func collideWithCoin() {
@@ -857,13 +882,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func platformAction(_ sprite: SKSpriteNode, breakable: Bool) {
         let amount = CGPoint(x: 0, y: -75.0)
-        let blueTrail = self.addTrail(name: "PlayerTrail")
+        /*let blueTrail = self.addTrail(name: "PlayerTrail")
         self.run(SKAction.sequence([
             SKAction.wait(forDuration: 3.0),
             SKAction.run() {
                 self.removeTrail(trail: blueTrail)
             }
-            ]))
+            ])) */
         let action = SKAction.screenShakeWithNode(sprite,
                                                   amount: amount, oscillations: 10, duration: 2.0)
         sprite.run(action)
@@ -876,14 +901,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func addRandomCoinForegroundOverlay() {
         let randomCoin = Int(arc4random_uniform(100)+1)
-        print(randomCoin)
         if randomCoin <= 40 {
             if TFLabel.isHidden {
+                spawnEnemy()
                 createForegroundOverlay(coin, flipX: false)
             }
         }
         if randomCoin >= 60 {
             if TFLabel.isHidden {
+                spawnEnemy()
                 createForegroundOverlay(coinSpecial, flipX: false)
             }
         }
@@ -900,8 +926,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         
         // Platform5Across
         if random <= platform5AcrossPercentage {
-            print("SPAWN")
-            spawnEnemy()
             overlaySprite = platform5Across
         }
         
@@ -1034,7 +1058,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             screenShakeByAmt(10)
         }
         // 3
-        let explode = explosion(intensity: 0.25
+        let explode = explosion(intensity: 0.1
             * CGFloat(randomNum + 1))
         explode.position = convert(explosionPos, to: bgNode)
         explode.run(SKAction.removeFromParentAfterDelay(2.0))

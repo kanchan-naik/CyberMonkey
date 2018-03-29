@@ -29,6 +29,7 @@
 		849D57F5206CA2AC00D80ED1 /* jump.caf in Resources */ = {isa = PBXBuildFile; fileRef = 849D57F4206CA2AC00D80ED1 /* jump.caf */; };
 		849D57F7206CA2C000D80ED1 /* start.caf in Resources */ = {isa = PBXBuildFile; fileRef = 849D57F6206CA2BF00D80ED1 /* start.caf */; };
 		849D57FB206CA6CA00D80ED1 /* jetpack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */; };
+		849D57FD206CAF7B00D80ED1 /* monster-crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */; };
 		84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */; };
 		84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92760203E87FB00711A66 /* AppDelegate.swift */; };
 		84C92763203E87FB00711A66 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84C92762203E87FB00711A66 /* GameScene.sks */; };
@@ -83,6 +84,7 @@
 		849D57F4206CA2AC00D80ED1 /* jump.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump.caf; sourceTree = "<group>"; };
 		849D57F6206CA2BF00D80ED1 /* start.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = start.caf; sourceTree = "<group>"; };
 		849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jetpack.mp3; sourceTree = "<group>"; };
+		849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "monster-crash.mp3"; sourceTree = "<group>"; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		84C9275D203E87FB00711A66 /* CyberMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyberMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92760203E87FB00711A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 		849D57EA206C807300D80ED1 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */,
 				849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */,
 				849D57EE206CA27C00D80ED1 /* exploding.mp3 */,
 				849D57F2206CA29800D80ED1 /* jumponmonster.mp3 */,
@@ -353,6 +356,7 @@
 				84E4858E203F26A100F9A1E4 /* PlatformDiagonal.sks in Resources */,
 				84C9277A203E8B6000711A66 /* Platform5Across.sks in Resources */,
 				8449C3F6205779D3003C7DE8 /* Coin.sks in Resources */,
+				849D57FD206CAF7B00D80ED1 /* monster-crash.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
