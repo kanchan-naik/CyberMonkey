@@ -23,6 +23,7 @@
 		849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849D57DE20697AB400D80ED1 /* PlayerTrail.sks */; };
 		849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */; };
 		849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E8206C806D00D80ED1 /* bombDrop.mp3 */; };
+		849D57ED206C93D700D80ED1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D57EC206C93D700D80ED1 /* GameKit.framework */; };
 		84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */; };
 		84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92760203E87FB00711A66 /* AppDelegate.swift */; };
 		84C92763203E87FB00711A66 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84C92762203E87FB00711A66 /* GameScene.sks */; };
@@ -71,6 +72,7 @@
 		849D57DE20697AB400D80ED1 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
 		849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SpaceGame.mp3; sourceTree = "<group>"; };
 		849D57E8206C806D00D80ED1 /* bombDrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombDrop.mp3; sourceTree = "<group>"; };
+		849D57EC206C93D700D80ED1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		84C9275D203E87FB00711A66 /* CyberMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyberMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92760203E87FB00711A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				849D57ED206C93D700D80ED1 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,11 +149,20 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		849D57EB206C93D700D80ED1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				849D57EC206C93D700D80ED1 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		84C92754203E87FB00711A66 = {
 			isa = PBXGroup;
 			children = (
 				84C9275F203E87FB00711A66 /* CyberMonkey */,
 				84C9275E203E87FB00711A66 /* Products */,
+				849D57EB206C93D700D80ED1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -266,6 +278,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -485,10 +502,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7947RL28M2;
+				DEVELOPMENT_TEAM = L98396R9NU;
 				INFOPLIST_FILE = CyberMonkey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = yangster23.CyberMonkey;
+				PRODUCT_BUNDLE_IDENTIFIER = CyberMonkey.CyberMonkey23;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -502,10 +519,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7947RL28M2;
+				DEVELOPMENT_TEAM = L98396R9NU;
 				INFOPLIST_FILE = CyberMonkey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = yangster23.CyberMonkey;
+				PRODUCT_BUNDLE_IDENTIFIER = CyberMonkey.CyberMonkey23;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

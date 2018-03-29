@@ -38,7 +38,7 @@ class TFQuestionBank {
         list.append(TFQuestion(questionText: "Sending my password to my \n buddy over email is safe", correctAnswerText: 1))
         list.append(TFQuestion(questionText: "Sending my password to my \n buddy over Facebook is safe", correctAnswerText: 1))
         list.append(TFQuestion(questionText: "Only adults can have their \n Facebook account stolen from them ", correctAnswerText: 1))
-        list.append(TFQuestion(questionText: "Only kids can have their \n Facebook account stolen from them ", correctAnswerText: 1))
+        list.append(TFQuestion(questionText: "Only kids can have their Facebook \n account stolen from them ", correctAnswerText: 1))
         
     }
 }
