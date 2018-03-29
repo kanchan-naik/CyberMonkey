@@ -21,6 +21,8 @@
 		8499845F2043836500A35957 /* Platform2Across.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8499845E2043836500A35957 /* Platform2Across.sks */; };
 		849984612043838700A35957 /* Platform3Across.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849984602043838700A35957 /* Platform3Across.sks */; };
 		849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849D57DE20697AB400D80ED1 /* PlayerTrail.sks */; };
+		849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */; };
+		849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E8206C806D00D80ED1 /* bombDrop.mp3 */; };
 		84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */; };
 		84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92760203E87FB00711A66 /* AppDelegate.swift */; };
 		84C92763203E87FB00711A66 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84C92762203E87FB00711A66 /* GameScene.sks */; };
@@ -67,6 +69,8 @@
 		8499845E2043836500A35957 /* Platform2Across.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform2Across.sks; sourceTree = "<group>"; };
 		849984602043838700A35957 /* Platform3Across.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform3Across.sks; sourceTree = "<group>"; };
 		849D57DE20697AB400D80ED1 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
+		849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SpaceGame.mp3; sourceTree = "<group>"; };
+		849D57E8206C806D00D80ED1 /* bombDrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombDrop.mp3; sourceTree = "<group>"; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		84C9275D203E87FB00711A66 /* CyberMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyberMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92760203E87FB00711A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +137,15 @@
 			path = Particles;
 			sourceTree = "<group>";
 		};
+		849D57EA206C807300D80ED1 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */,
+				849D57E8206C806D00D80ED1 /* bombDrop.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		84C92754203E87FB00711A66 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +171,7 @@
 				84C92764203E87FB00711A66 /* Actions.sks */,
 				84C92762203E87FB00711A66 /* GameScene.sks */,
 				84C92766203E87FB00711A66 /* GameScene.swift */,
+				849D57EA206C807300D80ED1 /* Sounds */,
 				847FED99204489FA002DEA29 /* Particles */,
 				841822502041F3BE00CCC6E4 /* GameState.swift */,
 				84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */,
@@ -287,8 +301,10 @@
 				84C92771203E87FB00711A66 /* LaunchScreen.storyboard in Resources */,
 				849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */,
 				84E48590203F275C00F9A1E4 /* BreakArrow.sks in Resources */,
+				849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */,
 				847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */,
 				841522C520696FF800BED8FA /* TF.sks in Resources */,
+				849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */,
 				84C92765203E87FB00711A66 /* Actions.sks in Resources */,
 				84C9277E203F23E800711A66 /* Break5Across.sks in Resources */,
 				8449C3F820577F11003C7DE8 /* Coin2.sks in Resources */,

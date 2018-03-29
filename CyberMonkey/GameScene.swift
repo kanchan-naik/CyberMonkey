@@ -82,12 +82,12 @@ class GameMenuView: UIStackView {
         let prompt = UILabel()
         prompt.font = UIFont(name: "PixelDigivolve", size: 30)
         prompt.textColor = UIColor.white
-        prompt.backgroundColor = hexStringToUIColor(hex: "513965")
+        prompt.backgroundColor = hexStringToUIColor(hex: "1D2951")
         prompt.textAlignment = .center
         prompt.adjustsFontSizeToFitWidth = true
         prompt.numberOfLines = 0
         prompt.layer.masksToBounds = true
-        prompt.layer.cornerRadius = 10.0
+        prompt.layer.cornerRadius = 0.0
         self.addArrangedSubview(prompt)
         for i in 1...4 {
             let label = UILabel()
@@ -189,7 +189,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     var TPrompt: SKSpriteNode!
     var FPrompt: SKSpriteNode!
 
+    let soundBombDrop = SKAction.playSoundFileNamed("bombDrop.mp3",
+                                                    waitForCompletion: true)
+    
     override func didMove(to view: SKView) {
+        playBackgroundMusic(name: "SpaceGame.mp3")
         // Load textures for spinning coins
         coinAnimationNormal   = setupAnimationWithPrefix("powerup01_",            start: 1, end: 6, timePerFrame: 0.1)
         coinAnimationSpecial  = setupAnimationWithPrefix("powerup02_",            start: 1, end: 6, timePerFrame: 0.1)
@@ -617,7 +621,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         fgNode.childNode(withName: "Bomb")!.run(repeatSeq)
         run(SKAction.sequence([
             SKAction.wait(forDuration: 2.0),
-            SKAction.run(startGame)]))
+            SKAction.run(startGame),
+            soundBombDrop
+        ]))
     }
     
     func startGame() {
@@ -720,13 +726,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         let prompt = gameMenuView.subviews[0] as! UILabel
         prompt.text = allQuestions.list[questionNumber].question
         let optionA = gameMenuView.subviews[1] as! UILabel
-        optionA.text = allQuestions.list[questionNumber].optionA
+        optionA.text = "1) " + allQuestions.list[questionNumber].optionA
         let optionB = gameMenuView.subviews[2] as! UILabel
-        optionB.text = allQuestions.list[questionNumber].optionB
+        optionB.text = "2) " + allQuestions.list[questionNumber].optionB
         let optionC = gameMenuView.subviews[3] as! UILabel
-        optionC.text = allQuestions.list[questionNumber].optionC
+        optionC.text = "3) " + allQuestions.list[questionNumber].optionC
         let optionD = gameMenuView.subviews[4] as! UILabel
-        optionD.text = allQuestions.list[questionNumber].optionD
+        optionD.text = "4) " + allQuestions.list[questionNumber].optionD
         selectedAnswer = allQuestions.list[questionNumber].correctAnswer
         
         if questionAnswered < allQuestions.list.count {
@@ -1106,5 +1112,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         sprite.run(SKAction.sequence(
             [SKAction.scale(to: 0.0, duration: 0.5),
              SKAction.removeFromParent()]))
+    }
+    
+    func playBackgroundMusic(name: String) {
+        if let backgroundMusic = childNode(withName: "backgroundMusic") {
+            backgroundMusic.removeFromParent() 
+        }
+        let music = SKAudioNode(fileNamed: name)
+        music.name = "backgroundMusic"
+        music.autoplayLooped = true
+        addChild(music)
     }
 }
