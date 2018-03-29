@@ -189,8 +189,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     var TPrompt: SKSpriteNode!
     var FPrompt: SKSpriteNode!
 
-    let soundBombDrop = SKAction.playSoundFileNamed("bombDrop.mp3",
-                                                    waitForCompletion: true)
+    let soundBombDrop = SKAction.playSoundFileNamed("bombDrop.mp3", waitForCompletion: true)
+    let soundStart = SKAction.playSoundFileNamed("start.caf", waitForCompletion: true)
+    let soundExplodingPlatform = SKAction.playSoundFileNamed("exploding.mp3", waitForCompletion: true)
+    let soundJump = SKAction.playSoundFileNamed("jump.caf", waitForCompletion: true)
+    let soundBoost = SKAction.playSoundFileNamed("jetpack.mp3", waitForCompletion: true)
     
     override func didMove(to view: SKView) {
         playBackgroundMusic(name: "SpaceGame.mp3")
@@ -296,58 +299,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        // Separate collision events between:
-        // a) player node and other node, b) projectile and other node:
-        // If it's a monster, you kill it else nothing is affected.
-       
-        var firstBody: SKPhysicsBody
-        var secondBody: SKPhysicsBody
-        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            firstBody = contact.bodyA
-            secondBody = contact.bodyB
-        } else {
-            firstBody = contact.bodyB
-            secondBody = contact.bodyA
-        }
-  
-        if ((firstBody.categoryBitMask & PhysicsCategory.Monster != 0) &&
-            (secondBody.categoryBitMask & PhysicsCategory.Projectile != 0)) {
-            if let monster = firstBody.node as? SKSpriteNode, let
-                projectile = secondBody.node as? SKSpriteNode {
-                projectileDidCollideWithMonster(projectile: projectile, monster: monster)
+        let other = contact.bodyA.categoryBitMask ==
+         PhysicsCategory.Player ? contact.bodyB : contact.bodyA
+        switch other.categoryBitMask {
+        case PhysicsCategory.CoinNormal:
+            if let coin = other.node as? SKSpriteNode {
+                // Collision with powerup
+                collideWithCoin()
+                coin.removeFromParent()
             }
-        }
-    
-        else {
-            let other = contact.bodyA.categoryBitMask ==
-                PhysicsCategory.Player ? contact.bodyB : contact.bodyA
-            switch other.categoryBitMask {
-            case PhysicsCategory.CoinNormal:
-                if let coin = other.node as? SKSpriteNode {
-                    // Collision with powerup
-                    collideWithCoin()
-                    coin.removeFromParent()
-                }
-            case PhysicsCategory.CoinSpecial:
-                if let coin = other.node as? SKSpriteNode {
-                    collideWithCoin()
-                    coin.removeFromParent()
-                }
-            case PhysicsCategory.PlatformNormal:
-                if let platform = other.node as? SKSpriteNode {
-                    if player.physicsBody!.velocity.dy < 0 {
-                        platformAction(platform, breakable: false)
-                       
-                    }
-                }
-            case PhysicsCategory.PlatformBreakable:
-                if let platform = other.node as? SKSpriteNode {
-                    if player.physicsBody!.velocity.dy < 0 {
-                        platformAction(platform, breakable: true)
-                    }
-                }
-            default: break
+        case PhysicsCategory.CoinSpecial:
+            if let coin = other.node as? SKSpriteNode {
+                collideWithCoin()
+                coin.removeFromParent()
             }
+        case PhysicsCategory.PlatformNormal:
+            if let platform = other.node as? SKSpriteNode {
+                if player.physicsBody!.velocity.dy < 0 {
+                    run(soundJump)
+                    platformAction(platform, breakable: false)
+                }
+            }
+        case PhysicsCategory.PlatformBreakable:
+            if let platform = other.node as? SKSpriteNode {
+                if player.physicsBody!.velocity.dy < 0 {
+                    run(soundExplodingPlatform)
+                    platformAction(platform, breakable: true)
+                }
+            }
+        default: break
         }
     }
     
@@ -365,11 +345,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         // 4
         worldNode.run(action, withKey: "shake")
     }
-
-    func projectileDidCollideWithMonster(projectile: SKSpriteNode, monster: SKSpriteNode) {
-        print("Hit")
-        projectile.removeFromParent()
-        monster.removeFromParent()
+    
+    func spawnEnemy() {
+        let enemy = SKSpriteNode(imageNamed: "alien_side_green")
+        enemy.position = CGPoint(x: player.position.x + size.width/2, y: levelPositionY/2)
+        fgNode.addChild(enemy)
+        let actionMove = SKAction.move(
+            to: CGPoint(x: -enemy.size.width/2, y: enemy.position.y),
+            duration: 2.0)
+        enemy.run(actionMove)
     }
     
     func collideWithCoin() {
@@ -490,9 +474,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         // 5
         lava.position.y = newLavaPositionY
         if player.position.y < lava.position.y + 180 {
-            boostPlayer()
+            jumpPlayer()
             run(SKAction.sequence([
-                SKAction.wait(forDuration: 0.01),
+                SKAction.wait(forDuration: 0.05),
                 SKAction.run() {
                     self.setupSecondChanceQuiz()
                 }
@@ -620,6 +604,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         fgNode.childNode(withName: "Bomb")!.run(SKAction.unhide())
         fgNode.childNode(withName: "Bomb")!.run(repeatSeq)
         run(SKAction.sequence([
+            soundStart,
             SKAction.wait(forDuration: 2.0),
             SKAction.run(startGame),
             soundBombDrop
@@ -854,6 +839,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     }
     
     func boostPlayer() {
+        run(soundBoost)
         setPlayerVelocity(1200)
     }
     
@@ -914,6 +900,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         
         // Platform5Across
         if random <= platform5AcrossPercentage {
+            print("SPAWN")
+            spawnEnemy()
             overlaySprite = platform5Across
         }
         

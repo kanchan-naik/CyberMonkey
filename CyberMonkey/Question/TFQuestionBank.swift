@@ -34,7 +34,7 @@ class TFQuestionBank {
         list.append(TFQuestion(questionText: "I should add as many random \n friends on Facebook as I can", correctAnswerText: 1))
         list.append(TFQuestion(questionText: "Turning GPS off prevents \n strangers from finding you", correctAnswerText: 0))
         list.append(TFQuestion(questionText: "Online reputation is my \n coolest nickname", correctAnswerText: 1))
-        list.append(TFQuestion(questionText: "Online reputation is my \n online reputation", correctAnswerText: 0))
+        list.append(TFQuestion(questionText: "Online reputation is what \n people think of me", correctAnswerText: 0))
         list.append(TFQuestion(questionText: "Sending my password to my \n buddy over email is safe", correctAnswerText: 1))
         list.append(TFQuestion(questionText: "Sending my password to my \n buddy over Facebook is safe", correctAnswerText: 1))
         list.append(TFQuestion(questionText: "Only adults can have their \n Facebook account stolen from them ", correctAnswerText: 1))
