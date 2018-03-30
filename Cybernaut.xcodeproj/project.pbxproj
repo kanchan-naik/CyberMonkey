@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		841522C520696FF800BED8FA /* TF.sks in Resources */ = {isa = PBXBuildFile; fileRef = 841522C420696FF800BED8FA /* TF.sks */; };
 		841522C72069794700BED8FA /* TFQuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841522C62069794700BED8FA /* TFQuestionBank.swift */; };
 		841522CA2069796D00BED8FA /* TFQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841522C92069796D00BED8FA /* TFQuestion.swift */; };
 		841822512041F3BE00CCC6E4 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841822502041F3BE00CCC6E4 /* GameState.swift */; };
@@ -19,7 +18,6 @@
 		847FEDA720448A63002DEA29 /* Lava.sks in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDA620448A63002DEA29 /* Lava.sks */; };
 		847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDA820448FC8002DEA29 /* SmokeTrail.sks */; };
 		8499845F2043836500A35957 /* Platform2Across.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8499845E2043836500A35957 /* Platform2Across.sks */; };
-		849984612043838700A35957 /* Platform3Across.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849984602043838700A35957 /* Platform3Across.sks */; };
 		849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849D57DE20697AB400D80ED1 /* PlayerTrail.sks */; };
 		849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */; };
 		849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E8206C806D00D80ED1 /* bombDrop.mp3 */; };
@@ -62,7 +60,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		841522C420696FF800BED8FA /* TF.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TF.sks; sourceTree = "<group>"; };
 		841522C62069794700BED8FA /* TFQuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFQuestionBank.swift; sourceTree = "<group>"; };
 		841522C92069796D00BED8FA /* TFQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFQuestion.swift; sourceTree = "<group>"; };
 		841822502041F3BE00CCC6E4 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
@@ -74,7 +71,6 @@
 		847FEDA620448A63002DEA29 /* Lava.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Lava.sks; sourceTree = "<group>"; };
 		847FEDA820448FC8002DEA29 /* SmokeTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeTrail.sks; sourceTree = "<group>"; };
 		8499845E2043836500A35957 /* Platform2Across.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform2Across.sks; sourceTree = "<group>"; };
-		849984602043838700A35957 /* Platform3Across.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform3Across.sks; sourceTree = "<group>"; };
 		849D57DE20697AB400D80ED1 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
 		849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SpaceGame.mp3; sourceTree = "<group>"; };
 		849D57E8206C806D00D80ED1 /* bombDrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombDrop.mp3; sourceTree = "<group>"; };
@@ -219,9 +215,7 @@
 		84C92778203E8B4100711A66 /* Scene Files */ = {
 			isa = PBXGroup;
 			children = (
-				841522C420696FF800BED8FA /* TF.sks */,
 				84C92779203E8B6000711A66 /* Platform5Across.sks */,
-				849984602043838700A35957 /* Platform3Across.sks */,
 				8499845E2043836500A35957 /* Platform2Across.sks */,
 				84E48589203F260800F9A1E4 /* PlatformArrow.sks */,
 				84E4858F203F275C00F9A1E4 /* BreakArrow.sks */,
@@ -328,7 +322,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E4858A203F260800F9A1E4 /* PlatformArrow.sks in Resources */,
-				849984612043838700A35957 /* Platform3Across.sks in Resources */,
 				84C9276C203E87FB00711A66 /* Main.storyboard in Resources */,
 				84C92763203E87FB00711A66 /* GameScene.sks in Resources */,
 				847FEDA520448A4A002DEA29 /* Assets.xcassets in Resources */,
@@ -339,7 +332,6 @@
 				849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */,
 				849D57F3206CA29800D80ED1 /* jumponmonster.mp3 in Resources */,
 				847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */,
-				841522C520696FF800BED8FA /* TF.sks in Resources */,
 				849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */,
 				84C92765203E87FB00711A66 /* Actions.sks in Resources */,
 				84C9277E203F23E800711A66 /* Break5Across.sks in Resources */,

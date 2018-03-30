@@ -86,7 +86,7 @@ class GameMenuView: UIStackView {
         prompt.adjustsFontSizeToFitWidth = true
         prompt.numberOfLines = 0
         prompt.layer.masksToBounds = true
-        prompt.layer.cornerRadius = 0.0
+        prompt.layer.cornerRadius = 10.0
         self.addArrangedSubview(prompt)
         for i in 1...4 {
             let label = UILabel()
@@ -446,8 +446,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     func updateTFPowerups() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        TPrompt.position = CGPoint(x: player.position.x - screenWidth/2, y: player.position.y)
-        FPrompt.position = CGPoint(x: player.position.x + screenWidth/2, y: player.position.y)
+        TPrompt.position = CGPoint(x: player.position.x - screenWidth * 3/4, y: player.position.y)
+        FPrompt.position = CGPoint(x: player.position.x + screenWidth * 3/4, y: player.position.y)
     }
     
     // 2
@@ -749,7 +749,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     func updateQuestion() {
         questionNumber = Int(arc4random_uniform(UInt32(allQuestions.list.count)))
         let prompt = gameMenuView.subviews[0] as! UILabel
-        prompt.text = allQuestions.list[questionNumber].question
+        prompt.text = "Q) " + allQuestions.list[questionNumber].question + "?"
         let optionA = gameMenuView.subviews[1] as! UILabel
         optionA.text = "1) " + allQuestions.list[questionNumber].optionA
         let optionB = gameMenuView.subviews[2] as! UILabel
