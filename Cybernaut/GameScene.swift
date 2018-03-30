@@ -143,8 +143,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     var lava: SKSpriteNode!
     var coin: SKSpriteNode!
     var coinSpecial: SKSpriteNode!
+    
     var coinAnimationNormal:        SKAction!
     var coinAnimationSpecial:       SKAction!
+    var playerAnimationSteerLeft: SKAction!
+    var playerAnimationSteerRight: SKAction!
+    var currentPlayerAnimation: SKAction?
     
     let cameraNode = SKCameraNode()
 
@@ -202,6 +206,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         // Load textures for spinning coins
         coinAnimationNormal   = setupAnimationWithPrefix("powerup01_",            start: 1, end: 6, timePerFrame: 0.1)
         coinAnimationSpecial  = setupAnimationWithPrefix("powerup02_",            start: 1, end: 6, timePerFrame: 0.1)
+        playerAnimationSteerLeft = setupAnimationWithPrefix("astronaut_left_", start: 0, end: 0, timePerFrame: 0.1)
+        playerAnimationSteerRight = setupAnimationWithPrefix("astronaut_right_", start: 0, end: 0, timePerFrame: 0.1)
         GameState.sharedInstance.score = 0
         self.hellolabel = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.hellolabel {
@@ -610,6 +616,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             playerState != .jump {
             playerState = .jump
         }
+      
+        if abs(player.physicsBody!.velocity.dx) > 100.0 {
+            if player.physicsBody!.velocity.dx > 0 {
+                runPlayerAnimation(playerAnimationSteerRight)
+            } else {
+                runPlayerAnimation(playerAnimationSteerLeft)
+                }
+        }
+        
     }
     
     func bombDrop() {
@@ -1018,6 +1033,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         return SKAction.animate(with: textures,
                                 timePerFrame: timePerFrame)
     }
+    
+    func runPlayerAnimation(_ animation: SKAction) {
+        if currentPlayerAnimation == nil
+            || currentPlayerAnimation! != animation {
+            player.removeAction(forKey: "playerAnimation")
+            player.run(animation, withKey: "playerAnimation")
+            currentPlayerAnimation = animation
+        } }
     
     func updateRedAlert(_ lastUpdateTime: TimeInterval) {
         // 1

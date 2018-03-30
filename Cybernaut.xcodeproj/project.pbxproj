@@ -86,7 +86,7 @@
 		849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jetpack.mp3; sourceTree = "<group>"; };
 		849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "monster-crash.mp3"; sourceTree = "<group>"; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
-		84C9275D203E87FB00711A66 /* CyberMonkey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyberMonkey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84C9275D203E87FB00711A66 /* Cybernaut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cybernaut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92760203E87FB00711A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84C92762203E87FB00711A66 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		84C92764203E87FB00711A66 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		84C92754203E87FB00711A66 = {
 			isa = PBXGroup;
 			children = (
-				84C9275F203E87FB00711A66 /* CyberMonkey */,
+				84C9275F203E87FB00711A66 /* Cybernaut */,
 				84C9275E203E87FB00711A66 /* Products */,
 				849D57EB206C93D700D80ED1 /* Frameworks */,
 			);
@@ -187,12 +187,12 @@
 		84C9275E203E87FB00711A66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84C9275D203E87FB00711A66 /* CyberMonkey.app */,
+				84C9275D203E87FB00711A66 /* Cybernaut.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		84C9275F203E87FB00711A66 /* CyberMonkey */ = {
+		84C9275F203E87FB00711A66 /* Cybernaut */ = {
 			isa = PBXGroup;
 			children = (
 				84C92778203E8B4100711A66 /* Scene Files */,
@@ -213,7 +213,7 @@
 				84E370D9205891AD001E6C2C /* SKTUtils */,
 				84CF1777204E31F700C44921 /* Font */,
 			);
-			path = CyberMonkey;
+			path = Cybernaut;
 			sourceTree = "<group>";
 		};
 		84C92778203E8B4100711A66 /* Scene Files */ = {
@@ -265,9 +265,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		84C9275C203E87FB00711A66 /* CyberMonkey */ = {
+		84C9275C203E87FB00711A66 /* Cybernaut */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 84C92775203E87FB00711A66 /* Build configuration list for PBXNativeTarget "CyberMonkey" */;
+			buildConfigurationList = 84C92775203E87FB00711A66 /* Build configuration list for PBXNativeTarget "Cybernaut" */;
 			buildPhases = (
 				84C92759203E87FB00711A66 /* Sources */,
 				84C9275A203E87FB00711A66 /* Frameworks */,
@@ -277,9 +277,9 @@
 			);
 			dependencies = (
 			);
-			name = CyberMonkey;
+			name = Cybernaut;
 			productName = CyberMonkey;
-			productReference = 84C9275D203E87FB00711A66 /* CyberMonkey.app */;
+			productReference = 84C9275D203E87FB00711A66 /* Cybernaut.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -289,7 +289,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Jonathan Yang";
 				TargetAttributes = {
 					84C9275C203E87FB00711A66 = {
@@ -304,7 +304,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 84C92758203E87FB00711A66 /* Build configuration list for PBXProject "CyberMonkey" */;
+			buildConfigurationList = 84C92758203E87FB00711A66 /* Build configuration list for PBXProject "Cybernaut" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -317,7 +317,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				84C9275C203E87FB00711A66 /* CyberMonkey */,
+				84C9275C203E87FB00711A66 /* Cybernaut */,
 			);
 		};
 /* End PBXProject section */
@@ -427,6 +427,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -434,6 +435,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -484,6 +486,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -491,6 +494,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -527,9 +531,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L98396R9NU;
-				INFOPLIST_FILE = CyberMonkey/Info.plist;
+				INFOPLIST_FILE = Cybernaut/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CyberMonkey.CyberMonkey23;
+				PRODUCT_BUNDLE_IDENTIFIER = yangster23.Cybernaut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -544,9 +549,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L98396R9NU;
-				INFOPLIST_FILE = CyberMonkey/Info.plist;
+				INFOPLIST_FILE = Cybernaut/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = CyberMonkey.CyberMonkey23;
+				PRODUCT_BUNDLE_IDENTIFIER = yangster23.Cybernaut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -556,7 +562,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		84C92758203E87FB00711A66 /* Build configuration list for PBXProject "CyberMonkey" */ = {
+		84C92758203E87FB00711A66 /* Build configuration list for PBXProject "Cybernaut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84C92773203E87FB00711A66 /* Debug */,
@@ -565,7 +571,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		84C92775203E87FB00711A66 /* Build configuration list for PBXNativeTarget "CyberMonkey" */ = {
+		84C92775203E87FB00711A66 /* Build configuration list for PBXNativeTarget "Cybernaut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				84C92776203E87FB00711A66 /* Debug */,
