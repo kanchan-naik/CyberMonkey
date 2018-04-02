@@ -14,6 +14,10 @@
 		841E477D2051AEA2005A43A4 /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E477C2051AEA2005A43A4 /* QuestionBank.swift */; };
 		8449C3F6205779D3003C7DE8 /* Coin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8449C3F5205779D3003C7DE8 /* Coin.sks */; };
 		8449C3F820577F11003C7DE8 /* Coin2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8449C3F720577F11003C7DE8 /* Coin2.sks */; };
+		8476C0C620714F64006D020B /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476C0C520714F64006D020B /* GameKitHelper.swift */; };
+		8476C0C82071539F006D020B /* CybernautNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476C0C72071539F006D020B /* CybernautNavigationController.swift */; };
+		8476C0CA20716587006D020B /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8476C0C920716587006D020B /* GameKit.framework */; };
+		8476C0CE20719517006D020B /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476C0CD20719517006D020B /* HomeScreenViewController.swift */; };
 		847FEDA520448A4A002DEA29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDA320448A4A002DEA29 /* Assets.xcassets */; };
 		847FEDA720448A63002DEA29 /* Lava.sks in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDA620448A63002DEA29 /* Lava.sks */; };
 		847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 847FEDA820448FC8002DEA29 /* SmokeTrail.sks */; };
@@ -21,7 +25,6 @@
 		849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 849D57DE20697AB400D80ED1 /* PlayerTrail.sks */; };
 		849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */; };
 		849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57E8206C806D00D80ED1 /* bombDrop.mp3 */; };
-		849D57ED206C93D700D80ED1 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D57EC206C93D700D80ED1 /* GameKit.framework */; };
 		849D57EF206CA27C00D80ED1 /* exploding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57EE206CA27C00D80ED1 /* exploding.mp3 */; };
 		849D57F3206CA29800D80ED1 /* jumponmonster.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57F2206CA29800D80ED1 /* jumponmonster.mp3 */; };
 		849D57F5206CA2AC00D80ED1 /* jump.caf in Resources */ = {isa = PBXBuildFile; fileRef = 849D57F4206CA2AC00D80ED1 /* jump.caf */; };
@@ -67,6 +70,10 @@
 		841E477C2051AEA2005A43A4 /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
 		8449C3F5205779D3003C7DE8 /* Coin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin.sks; sourceTree = "<group>"; };
 		8449C3F720577F11003C7DE8 /* Coin2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin2.sks; sourceTree = "<group>"; };
+		8476C0C520714F64006D020B /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
+		8476C0C72071539F006D020B /* CybernautNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CybernautNavigationController.swift; sourceTree = "<group>"; };
+		8476C0C920716587006D020B /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		8476C0CD20719517006D020B /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		847FEDA320448A4A002DEA29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		847FEDA620448A63002DEA29 /* Lava.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Lava.sks; sourceTree = "<group>"; };
 		847FEDA820448FC8002DEA29 /* SmokeTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmokeTrail.sks; sourceTree = "<group>"; };
@@ -74,7 +81,6 @@
 		849D57DE20697AB400D80ED1 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
 		849D57E4206C7BCD00D80ED1 /* SpaceGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SpaceGame.mp3; sourceTree = "<group>"; };
 		849D57E8206C806D00D80ED1 /* bombDrop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bombDrop.mp3; sourceTree = "<group>"; };
-		849D57EC206C93D700D80ED1 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		849D57EE206CA27C00D80ED1 /* exploding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = exploding.mp3; sourceTree = "<group>"; };
 		849D57F2206CA29800D80ED1 /* jumponmonster.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jumponmonster.mp3; sourceTree = "<group>"; };
 		849D57F4206CA2AC00D80ED1 /* jump.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jump.caf; sourceTree = "<group>"; };
@@ -119,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				849D57ED206C93D700D80ED1 /* GameKit.framework in Frameworks */,
+				8476C0CA20716587006D020B /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +141,14 @@
 				841E477A2051ADA8005A43A4 /* Question.swift */,
 			);
 			path = Question;
+			sourceTree = "<group>";
+		};
+		8476C0C420714F2E006D020B /* GameKit */ = {
+			isa = PBXGroup;
+			children = (
+				8476C0C520714F64006D020B /* GameKitHelper.swift */,
+			);
+			path = GameKit;
 			sourceTree = "<group>";
 		};
 		847FED99204489FA002DEA29 /* Particles */ = {
@@ -166,7 +180,7 @@
 		849D57EB206C93D700D80ED1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				849D57EC206C93D700D80ED1 /* GameKit.framework */,
+				8476C0C920716587006D020B /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,6 +205,7 @@
 		84C9275F203E87FB00711A66 /* Cybernaut */ = {
 			isa = PBXGroup;
 			children = (
+				8476C0C420714F2E006D020B /* GameKit */,
 				84C92778203E8B4100711A66 /* Scene Files */,
 				84C92760203E87FB00711A66 /* AppDelegate.swift */,
 				841522C82069794C00BED8FA /* Question */,
@@ -202,6 +217,8 @@
 				841822502041F3BE00CCC6E4 /* GameState.swift */,
 				84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */,
 				84C92768203E87FB00711A66 /* GameViewController.swift */,
+				8476C0CD20719517006D020B /* HomeScreenViewController.swift */,
+				8476C0C72071539F006D020B /* CybernautNavigationController.swift */,
 				84C9276A203E87FB00711A66 /* Main.storyboard */,
 				84C9276D203E87FB00711A66 /* Assets.xcassets */,
 				84C9276F203E87FB00711A66 /* LaunchScreen.storyboard */,
@@ -294,6 +311,9 @@
 							com.apple.GameCenter = {
 								enabled = 1;
 							};
+							com.apple.GameCenter.iOS = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -359,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8476C0C620714F64006D020B /* GameKitHelper.swift in Sources */,
 				841E477B2051ADA8005A43A4 /* Question.swift in Sources */,
 				841522C72069794700BED8FA /* TFQuestionBank.swift in Sources */,
 				84E370ED205891AD001E6C2C /* CGPoint+Extensions.swift in Sources */,
@@ -367,6 +388,7 @@
 				84E370EA205891AD001E6C2C /* SKAction+Extensions.swift in Sources */,
 				84E370F1205891AD001E6C2C /* CGFloat+Extensions.swift in Sources */,
 				84E370E7205891AD001E6C2C /* CGVector+Extensions.swift in Sources */,
+				8476C0C82071539F006D020B /* CybernautNavigationController.swift in Sources */,
 				84E370EF205891AD001E6C2C /* SKTAudio.swift in Sources */,
 				84C92767203E87FB00711A66 /* GameScene.swift in Sources */,
 				84E370E6205891AD001E6C2C /* SKColor+Extensions.swift in Sources */,
@@ -374,6 +396,7 @@
 				84E370EB205891AD001E6C2C /* SKAction+SpecialEffects.swift in Sources */,
 				841822512041F3BE00CCC6E4 /* GameState.swift in Sources */,
 				841E477D2051AEA2005A43A4 /* QuestionBank.swift in Sources */,
+				8476C0CE20719517006D020B /* HomeScreenViewController.swift in Sources */,
 				841522CA2069796D00BED8FA /* TFQuestion.swift in Sources */,
 				84C92769203E87FB00711A66 /* GameViewController.swift in Sources */,
 				84E370EE205891AD001E6C2C /* SKTEffects.swift in Sources */,
@@ -522,11 +545,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L98396R9NU;
+				DEVELOPMENT_TEAM = 7947RL28M2;
 				INFOPLIST_FILE = Cybernaut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = yangster23.Cybernaut;
+				PRODUCT_BUNDLE_IDENTIFIER = yangter23.Cybernaut23;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -540,11 +563,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L98396R9NU;
+				DEVELOPMENT_TEAM = 7947RL28M2;
 				INFOPLIST_FILE = Cybernaut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = yangster23.Cybernaut;
+				PRODUCT_BUNDLE_IDENTIFIER = yangter23.Cybernaut23;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

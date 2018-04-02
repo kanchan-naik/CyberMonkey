@@ -78,6 +78,17 @@ class GameMenuView: UIStackView {
         self.spacing = 10
         self.isUserInteractionEnabled = true
         //set up a label
+        let instruct = UILabel()
+        instruct.font = UIFont(name: "PixelDigivolve", size: 30)
+        instruct.textColor = UIColor.white
+        instruct.text = "To continue playing, answer this:"
+        instruct.backgroundColor = hexStringToUIColor(hex: "1D2951")
+        instruct.textAlignment = .center
+        instruct.adjustsFontSizeToFitWidth = true
+        instruct.numberOfLines = 0
+        instruct.layer.masksToBounds = true
+        instruct.layer.cornerRadius = 10.0
+        self.addArrangedSubview(instruct)
         let prompt = UILabel()
         prompt.font = UIFont(name: "PixelDigivolve", size: 30)
         prompt.textColor = UIColor.white
@@ -90,7 +101,7 @@ class GameMenuView: UIStackView {
         self.addArrangedSubview(prompt)
         for i in 1...4 {
             let label = UILabel()
-            label.font = UIFont(name: "PixelDigivolve", size: 30)
+            label.font = UIFont(name: "PixelDigivolve", size: 25)
             label.textColor = UIColor.white
             label.backgroundColor = hexStringToUIColor(hex: "B53389")
             label.textAlignment = .center
@@ -101,6 +112,17 @@ class GameMenuView: UIStackView {
             label.layer.cornerRadius = 10.0
             self.addArrangedSubview(label)
         }
+        let quit = UILabel()
+        quit.font = UIFont(name: "PixelDigivolve", size: 30)
+        quit.textColor = UIColor.white
+        quit.text = "Don't feel answering, end game"
+        quit.backgroundColor = hexStringToUIColor(hex: "1D2951")
+        quit.textAlignment = .center
+        quit.adjustsFontSizeToFitWidth = true
+        quit.numberOfLines = 0
+        quit.layer.masksToBounds = true
+        quit.layer.cornerRadius = 10.0
+        self.addArrangedSubview(quit)
         configureTapGestures()
     }
     required init(coder: NSCoder) {
@@ -199,7 +221,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     let soundBoost = SKAction.playSoundFileNamed("jetpack.mp3", waitForCompletion: true)
     let soundMonsterCrash = SKAction.playSoundFileNamed("monster-crash.mp3", waitForCompletion: true)
     let soundMonsterJump = SKAction.playSoundFileNamed("jumponmonster.mp3", waitForCompletion: true)
-
+    
+    let leaderboardIDMap = ["highest_score": "yangter23.Cybernaut23.highest_score"]
     
     override func didMove(to view: SKView) {
         playBackgroundMusic(name: "SpaceGame.mp3")
@@ -230,6 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         if gameState == .waitingForTap {
             bombDrop()
         }
+        
         let touch:UITouch = touches.first! as UITouch
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
@@ -237,7 +261,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         if let name = touchedNode.name
         {
             if name == "truePrompt" {
-                print("Correct Button")
                 if TFSelectedAnswer == 0 {
                     TFLabel.text = "Correct!"
                     TFLabel.fontColor = SKColor.green
@@ -254,7 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                     )
                     boostPlayer()
                 } else {
-                    TFLabel.text = "Wrong!"
+                    TFLabel.text = "Oops!" // add the answer to the question
                     TFLabel.fontColor = SKColor.red
                     self.TPrompt.isHidden = true
                     self.FPrompt.isHidden = true
@@ -267,6 +290,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                             }
                             ])
                     )
+                    let blast = explosion(intensity: 5.0)
+                    blast.position = player.position
+                    blast.zPosition = 11
+                    addChild(blast)
                 }
             }
             if name == "falsePrompt" {
@@ -707,7 +734,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        gameMenuView.frame = CGRect(x: screenWidth / 4 , y: 100, width: screenWidth * 0.5 , height: screenHeight * 0.8)
+        gameMenuView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: screenHeight * 0.8)
         self.view!.addSubview(gameMenuView)
         gameMenuView.delegate = self
         gameState = .paused
@@ -716,7 +743,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     }
     
     func didTapOnView(at index: Int) {
-        if index == selectedAnswer + 1 {
+        if index == selectedAnswer + 2 {
             let subView = self.gameMenuView.arrangedSubviews[index]
             let bounds = subView.bounds
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseOut, animations: {
@@ -748,15 +775,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func updateQuestion() {
         questionNumber = Int(arc4random_uniform(UInt32(allQuestions.list.count)))
-        let prompt = gameMenuView.subviews[0] as! UILabel
+        let prompt = gameMenuView.subviews[1] as! UILabel
         prompt.text = "Q) " + allQuestions.list[questionNumber].question + "?"
-        let optionA = gameMenuView.subviews[1] as! UILabel
+        let optionA = gameMenuView.subviews[2] as! UILabel
         optionA.text = "1) " + allQuestions.list[questionNumber].optionA
-        let optionB = gameMenuView.subviews[2] as! UILabel
+        let optionB = gameMenuView.subviews[3] as! UILabel
         optionB.text = "2) " + allQuestions.list[questionNumber].optionB
-        let optionC = gameMenuView.subviews[3] as! UILabel
+        let optionC = gameMenuView.subviews[4] as! UILabel
         optionC.text = "3) " + allQuestions.list[questionNumber].optionC
-        let optionD = gameMenuView.subviews[4] as! UILabel
+        let optionD = gameMenuView.subviews[5] as! UILabel
         optionD.text = "4) " + allQuestions.list[questionNumber].optionD
         selectedAnswer = allQuestions.list[questionNumber].correctAnswer
         
@@ -843,6 +870,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         
         // We want to save the score/high score we have
         GameState.sharedInstance.saveState()
+        reportScoreToGameCenter(score: Int64(GameState.sharedInstance.score))
         gameMenuView.removeFromSuperview()
         let blast = explosion(intensity: 5.0)
         blast.position = player.position
@@ -857,6 +885,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                 self.view!.presentScene(endGameScene, transition: reveal)
             }
             ]))
+    }
+    
+    func reportScoreToGameCenter(score: Int64) {
+        GameKitHelper.sharedInstance.reportScore(score: score, forLeaderboardID: leaderboardIDMap["highest_score"]!)
     }
     
     func sceneCropAmount() -> CGFloat {

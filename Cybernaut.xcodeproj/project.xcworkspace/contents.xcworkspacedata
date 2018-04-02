@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/JonathanYang/CyberMonkey/Cybernaut.xcodeproj">
+      location = "group:../../Downloads/Purple_Overlay_burned.png">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
