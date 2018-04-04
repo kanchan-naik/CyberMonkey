@@ -79,15 +79,12 @@ class GameMenuView: UIStackView {
         self.isUserInteractionEnabled = true
         //set up a label
         let instruct = UILabel()
-        instruct.font = UIFont(name: "PixelDigivolve", size: 30)
+        instruct.font = UIFont(name: "PixelDigivolve", size: 20)
         instruct.textColor = UIColor.white
-        instruct.text = "To continue playing, answer this:"
-        instruct.backgroundColor = hexStringToUIColor(hex: "1D2951")
+        instruct.text = "Answer question for 2nd chance"
         instruct.textAlignment = .center
         instruct.adjustsFontSizeToFitWidth = true
         instruct.numberOfLines = 0
-        instruct.layer.masksToBounds = true
-        instruct.layer.cornerRadius = 10.0
         self.addArrangedSubview(instruct)
         let prompt = UILabel()
         prompt.font = UIFont(name: "PixelDigivolve", size: 30)
@@ -113,14 +110,10 @@ class GameMenuView: UIStackView {
             self.addArrangedSubview(label)
         }
         let quit = UILabel()
-        quit.font = UIFont(name: "PixelDigivolve", size: 30)
+        quit.font = UIFont(name: "PixelDigivolve", size: 20)
         quit.textColor = UIColor.white
-        quit.text = "Don't feel answering, end game"
-        quit.backgroundColor = hexStringToUIColor(hex: "1D2951")
+        quit.text = "Skip"
         quit.textAlignment = .center
-        quit.adjustsFontSizeToFitWidth = true
-        quit.numberOfLines = 0
-        quit.layer.masksToBounds = true
         quit.layer.cornerRadius = 10.0
         self.addArrangedSubview(quit)
         configureTapGestures()
@@ -221,6 +214,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     let soundBoost = SKAction.playSoundFileNamed("jetpack.mp3", waitForCompletion: true)
     let soundMonsterCrash = SKAction.playSoundFileNamed("monster-crash.mp3", waitForCompletion: true)
     let soundMonsterJump = SKAction.playSoundFileNamed("jumponmonster.mp3", waitForCompletion: true)
+    let soundWin = SKAction.playSoundFileNamed("win.mp3", waitForCompletion: true)
+    let soundFail = SKAction.playSoundFileNamed("pada.mp3", waitForCompletion: true)
+    let soundCollect = SKAction.playSoundFileNamed("collect.mp3", waitForCompletion: true)
     
     let leaderboardIDMap = ["highest_score": "yangter23.Cybernaut23.highest_score"]
     
@@ -262,6 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         {
             if name == "truePrompt" {
                 if TFSelectedAnswer == 0 {
+                    run(soundWin)
                     TFLabel.text = "Correct!"
                     TFLabel.fontColor = SKColor.green
                     self.TPrompt.isHidden = true
@@ -277,6 +274,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                     )
                     boostPlayer()
                 } else {
+                    run(soundFail)
                     TFLabel.text = "Oops!" // add the answer to the question
                     TFLabel.fontColor = SKColor.red
                     self.TPrompt.isHidden = true
@@ -299,6 +297,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             if name == "falsePrompt" {
                 print("False Button")
                 if TFSelectedAnswer == 1 {
+                    run(soundWin)
                     TFLabel.text = "Correct!"
                     TFLabel.fontColor = SKColor.green
                     self.TPrompt.isHidden = true
@@ -315,7 +314,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
                     boostPlayer()
                 }
                 else {
-                    TFLabel.text = "Wrong!"
+                    run(soundFail)
+                    TFLabel.text = "Oops!"
                     TFLabel.fontColor = SKColor.red
                     self.TPrompt.isHidden = true
                     self.FPrompt.isHidden = true
@@ -340,11 +340,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             if let coin = other.node as? SKSpriteNode {
                 // Collision with powerup
                 collideWithCoin()
+                run(soundCollect)
                 coin.removeFromParent()
             }
         case PhysicsCategory.CoinSpecial:
             if let coin = other.node as? SKSpriteNode {
                 collideWithCoin()
+                run(soundCollect)
                 coin.removeFromParent()
             }
         case PhysicsCategory.PlatformNormal:
@@ -532,6 +534,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         // 5
         lava.position.y = newLavaPositionY
         if player.position.y < lava.position.y + 180 {
+            run(soundMonsterCrash)
             jumpPlayer()
             run(SKAction.sequence([
                 SKAction.wait(forDuration: 0.05),
@@ -744,6 +747,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func didTapOnView(at index: Int) {
         if index == selectedAnswer + 2 {
+            run(soundWin)
             let subView = self.gameMenuView.arrangedSubviews[index]
             let bounds = subView.bounds
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 10, options: .curveEaseOut, animations: {
@@ -856,6 +860,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         gameState = .gameOver
         playerState = .dead
         // 2
+        run(soundFail)
         physicsWorld.contactDelegate = nil
         player.physicsBody?.isDynamic = false
         // 3

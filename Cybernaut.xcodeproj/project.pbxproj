@@ -32,6 +32,7 @@
 		849D57FB206CA6CA00D80ED1 /* jetpack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */; };
 		849D57FD206CAF7B00D80ED1 /* monster-crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */; };
 		84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */; };
+		84B0B12F20757DB400353398 /* pada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84B0B12E20757DB400353398 /* pada.mp3 */; };
 		84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92760203E87FB00711A66 /* AppDelegate.swift */; };
 		84C92763203E87FB00711A66 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84C92762203E87FB00711A66 /* GameScene.sks */; };
 		84C92765203E87FB00711A66 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84C92764203E87FB00711A66 /* Actions.sks */; };
@@ -88,6 +89,9 @@
 		849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jetpack.mp3; sourceTree = "<group>"; };
 		849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "monster-crash.mp3"; sourceTree = "<group>"; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
+		84B0B12C20757D6600353398 /* collect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collect.mp3; sourceTree = "<group>"; };
+		84B0B12E20757DB400353398 /* pada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pada.mp3; path = ../../../Downloads/pada.mp3; sourceTree = "<group>"; };
+		84B0B13220757E1000353398 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		84C9275D203E87FB00711A66 /* Cybernaut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cybernaut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C92760203E87FB00711A66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84C92762203E87FB00711A66 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -165,6 +169,9 @@
 		849D57EA206C807300D80ED1 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				84B0B13220757E1000353398 /* win.mp3 */,
+				84B0B12E20757DB400353398 /* pada.mp3 */,
+				84B0B12C20757D6600353398 /* collect.mp3 */,
 				849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */,
 				849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */,
 				849D57EE206CA27C00D80ED1 /* exploding.mp3 */,
@@ -350,6 +357,7 @@
 				849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */,
 				84E48590203F275C00F9A1E4 /* BreakArrow.sks in Resources */,
 				849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */,
+				84B0B12F20757DB400353398 /* pada.mp3 in Resources */,
 				849D57F3206CA29800D80ED1 /* jumponmonster.mp3 in Resources */,
 				847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */,
 				849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */,
