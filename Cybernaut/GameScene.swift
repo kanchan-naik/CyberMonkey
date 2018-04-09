@@ -79,7 +79,7 @@ class GameMenuView: UIStackView {
         self.isUserInteractionEnabled = true
         //set up a label
         let instruct = UILabel()
-        instruct.font = UIFont(name: "PixelDigivolve", size: 20)
+        instruct.font = UIFont(name: "PixelDigivolve", size: 25)
         instruct.textColor = UIColor.white
         instruct.text = "Answer question for 2nd chance"
         instruct.textAlignment = .center
@@ -156,11 +156,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     var breakArrow: SKSpriteNode!
     var breakDiagonal: SKSpriteNode!
     var lava: SKSpriteNode!
-    var coin: SKSpriteNode!
-    var coinSpecial: SKSpriteNode!
     
-    var coinAnimationNormal:        SKAction!
-    var coinAnimationSpecial:       SKAction!
+    var coinPrivacy0: SKSpriteNode!
+    var coinPrivacy1: SKSpriteNode!
+    var coinPrivacy2: SKSpriteNode!
+    
+    var coinSocial0: SKSpriteNode!
+    var coinSocial1: SKSpriteNode!
+    var coinSocial2: SKSpriteNode!
+    var coinSocial3: SKSpriteNode!
+    
     var playerAnimationSteerLeft: SKAction!
     var playerAnimationSteerRight: SKAction!
     var currentPlayerAnimation: SKAction?
@@ -222,9 +227,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     override func didMove(to view: SKView) {
         playBackgroundMusic(name: "SpaceGame.mp3")
-        // Load textures for spinning coins
-        coinAnimationNormal   = setupAnimationWithPrefix("powerup01_",            start: 1, end: 6, timePerFrame: 0.1)
-        coinAnimationSpecial  = setupAnimationWithPrefix("powerup02_",            start: 1, end: 6, timePerFrame: 0.1)
         playerAnimationSteerLeft = setupAnimationWithPrefix("astronaut_left_", start: 0, end: 0, timePerFrame: 0.1)
         playerAnimationSteerRight = setupAnimationWithPrefix("astronaut_right_", start: 0, end: 0, timePerFrame: 0.1)
         GameState.sharedInstance.score = 0
@@ -339,13 +341,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         case PhysicsCategory.CoinNormal:
             if let coin = other.node as? SKSpriteNode {
                 // Collision with powerup
-                collideWithCoin()
+                collideWithCoin(true)
                 run(soundCollect)
                 coin.removeFromParent()
             }
         case PhysicsCategory.CoinSpecial:
             if let coin = other.node as? SKSpriteNode {
-                collideWithCoin()
+                collideWithCoin(false)
                 run(soundCollect)
                 coin.removeFromParent()
             }
@@ -416,22 +418,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         enemy.run(repeatAction)
     }
     
-    func collideWithCoin() {
-        updateTFQuestion()
+    func collideWithCoin(_ typePrivacy: Bool) {
+        updateTFQuestion(typePrivacy)
     }
     
-    func updateTFQuestion() {
+    func updateTFQuestion(_ typePrivacy: Bool) {
         TFQuestionNumber = Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
-        TFLabel.text = allTFQuestions.list[TFQuestionNumber].question
-        TFSelectedAnswer = allTFQuestions.list[TFQuestionNumber].correctAnswer
+        if typePrivacy == true {
+            while allTFQuestions.list[TFQuestionNumber].type != "privacy" {
+                TFQuestionNumber = Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
+            }
+                TFLabel.text = allTFQuestions.list[TFQuestionNumber].question
+                TFSelectedAnswer = allTFQuestions.list[TFQuestionNumber].correctAnswer
+                setTFLabel()
+                setTFPowerups()
+                
+        }
         
-        setTFLabel()
-        setTFPowerups()
-     
+        else {
+            while allTFQuestions.list[TFQuestionNumber].type == "privacy" {
+                TFQuestionNumber = Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
+            }
+            TFLabel.text = allTFQuestions.list[TFQuestionNumber].question
+            TFSelectedAnswer = allTFQuestions.list[TFQuestionNumber].correctAnswer
+            setTFLabel()
+            setTFPowerups()
+        }
+        
         if TFQuestionAnswered < allTFQuestions.list.count {
             // Prevents (consecutive) repeating questions.
             while TFPreviousNumber == TFQuestionNumber {
-                TFQuestionNumber =  Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
+                TFQuestionNumber = Int(arc4random_uniform(UInt32(allTFQuestions.list.count)))
             }
             TFPreviousNumber = TFQuestionNumber
             TFQuestionAnswered += 1
@@ -475,11 +492,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     func updateTFPowerups() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        TPrompt.position = CGPoint(x: player.position.x - screenWidth * 3/4, y: player.position.y)
-        FPrompt.position = CGPoint(x: player.position.x + screenWidth * 3/4, y: player.position.y)
+        let screenHeight = screenSize.height
+        TPrompt.position = CGPoint(x: player.position.x - screenWidth * 3/4,
+                                   y: player.position.y - screenHeight * 1/2)
+        FPrompt.position = CGPoint(x: player.position.x + screenWidth * 3/4,
+                                   y: player.position.y - screenHeight * 1/2)
     }
     
-    // 2
     func createForegroundOverlay(_ overlayTemplate:
         SKSpriteNode, flipX: Bool) {
         let foregroundOverlay = overlayTemplate.copy() as! SKSpriteNode
@@ -491,7 +510,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             foregroundOverlay.xScale = -1.0
         }
         foregroundOverlay.zPosition = 1
-        addAnimationToOverlay (overlay: foregroundOverlay)
         fgNode.addChild(foregroundOverlay)
     }
     
@@ -710,8 +728,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
         platformDiagonal = loadForegroundOverlayTemplate("PlatformDiagonal")
         breakDiagonal = loadForegroundOverlayTemplate("BreakDiagonal")
         break5Across = loadForegroundOverlayTemplate("Break5Across")
-        coin = loadCoin("Coin")
-        coinSpecial = loadCoin("Coin2")
+        coinSocial0 = loadCoin("Coin1")
+        coinSocial1 = loadCoin("Coin2")
+        coinSocial2 = loadCoin("Coin3")
+        coinSocial3 = loadCoin("Coin4")
+        coinPrivacy0 = loadCoin("Coin5")
+        coinPrivacy1 = loadCoin("Coin6")
+        coinPrivacy2 = loadCoin("Coin7")
         setupLava()
         
         hudNode = worldNode.childNode(withName: "Hud")
@@ -953,16 +976,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     func addRandomCoinForegroundOverlay() {
         let randomCoin = Int(arc4random_uniform(100)+1)
-        if randomCoin <= 40 {
+        if randomCoin <= 50 {
             if TFLabel.isHidden {
                 spawnEnemy()
-                createForegroundOverlay(coin, flipX: false)
+                let randomSocial = Int(arc4random_uniform(4))
+                if randomSocial == 0 {
+                    createForegroundOverlay(coinSocial0, flipX: false)
+                }
+                if randomSocial == 1 {
+                    createForegroundOverlay(coinSocial1, flipX: false)
+                }
+                if randomSocial == 2 {
+                    createForegroundOverlay(coinSocial2, flipX: false)
+                }
+                if randomSocial == 3 {
+                    createForegroundOverlay(coinSocial3, flipX: false)
+                }
             }
         }
-        if randomCoin >= 60 {
+        if randomCoin > 50 {
             if TFLabel.isHidden {
                 spawnEnemy()
-                createForegroundOverlay(coinSpecial, flipX: false)
+                let randomPrivacy = Int(arc4random_uniform(3))
+                if randomPrivacy == 0 {
+                    createForegroundOverlay(coinPrivacy0, flipX: false)
+                }
+                if randomPrivacy == 1 {
+                    createForegroundOverlay(coinPrivacy1, flipX: false)
+                }
+                if randomPrivacy == 2 {
+                    createForegroundOverlay(coinPrivacy2, flipX: false)
+                }
             }
         }
     }
@@ -1004,28 +1048,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
             overlaySprite = breakDiagonal
         }
         createForegroundOverlay(overlaySprite, flipX: false)
-    }
-    
-    
-    func addAnimationToOverlay(overlay: SKSpriteNode) {
-        overlay.enumerateChildNodes(withName: "Coin") { (node, stop) in
-            var newNode = SKSpriteNode()
-            if let nodePhysicsBody = node.physicsBody {
-                switch nodePhysicsBody.categoryBitMask {
-                case PhysicsCategory.CoinNormal:
-                    newNode = self.coin.copy() as! SKSpriteNode
-                    newNode.run(SKAction.repeatForever(self.coinAnimationNormal))
-                case PhysicsCategory.CoinSpecial:
-                    newNode = self.coinSpecial.copy() as! SKSpriteNode
-                    newNode.run(SKAction.repeatForever(self.coinAnimationSpecial))
-                default:
-                    newNode = node.copy() as! SKSpriteNode
-                }
-                newNode.position = node.position
-                overlay.addChild(newNode)
-                node.removeFromParent()
-            }
-        }
     }
     
     // MARK: - Overlay nodes

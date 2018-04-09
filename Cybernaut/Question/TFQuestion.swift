@@ -13,12 +13,14 @@ class TFQuestion {
     let question: String
     let T: Int
     let F: Int
+    let type: String
     let correctAnswer: Int
     
-    init(questionText: String, correctAnswerText: Int) {
+    init(questionText: String, theme: String, correctAnswerText: Int) {
         question = questionText
         T = 0
         F = 1
+        type = theme
         correctAnswer = correctAnswerText
     }
 }

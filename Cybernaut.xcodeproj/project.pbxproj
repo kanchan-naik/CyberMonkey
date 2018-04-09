@@ -12,7 +12,7 @@
 		841822512041F3BE00CCC6E4 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841822502041F3BE00CCC6E4 /* GameState.swift */; };
 		841E477B2051ADA8005A43A4 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E477A2051ADA8005A43A4 /* Question.swift */; };
 		841E477D2051AEA2005A43A4 /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841E477C2051AEA2005A43A4 /* QuestionBank.swift */; };
-		8449C3F6205779D3003C7DE8 /* Coin.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8449C3F5205779D3003C7DE8 /* Coin.sks */; };
+		8449C3F6205779D3003C7DE8 /* Coin1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8449C3F5205779D3003C7DE8 /* Coin1.sks */; };
 		8449C3F820577F11003C7DE8 /* Coin2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8449C3F720577F11003C7DE8 /* Coin2.sks */; };
 		8476C0C620714F64006D020B /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476C0C520714F64006D020B /* GameKitHelper.swift */; };
 		8476C0C82071539F006D020B /* CybernautNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8476C0C72071539F006D020B /* CybernautNavigationController.swift */; };
@@ -31,6 +31,11 @@
 		849D57F7206CA2C000D80ED1 /* start.caf in Resources */ = {isa = PBXBuildFile; fileRef = 849D57F6206CA2BF00D80ED1 /* start.caf */; };
 		849D57FB206CA6CA00D80ED1 /* jetpack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */; };
 		849D57FD206CAF7B00D80ED1 /* monster-crash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */; };
+		84A9F934207C12A1009A467C /* Coin3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84A9F933207C12A1009A467C /* Coin3.sks */; };
+		84A9F936207C12A8009A467C /* Coin4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84A9F935207C12A8009A467C /* Coin4.sks */; };
+		84A9F938207C12E2009A467C /* Coin5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84A9F937207C12E2009A467C /* Coin5.sks */; };
+		84A9F93A207C12F5009A467C /* Coin6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84A9F939207C12F5009A467C /* Coin6.sks */; };
+		84A9F93C207C132E009A467C /* Coin7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84A9F93B207C132E009A467C /* Coin7.sks */; };
 		84AEDCC32040F9BA004AEF18 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */; };
 		84B0B12F20757DB400353398 /* pada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84B0B12E20757DB400353398 /* pada.mp3 */; };
 		84C92761203E87FB00711A66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C92760203E87FB00711A66 /* AppDelegate.swift */; };
@@ -69,7 +74,7 @@
 		841822502041F3BE00CCC6E4 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		841E477A2051ADA8005A43A4 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		841E477C2051AEA2005A43A4 /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
-		8449C3F5205779D3003C7DE8 /* Coin.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin.sks; sourceTree = "<group>"; };
+		8449C3F5205779D3003C7DE8 /* Coin1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin1.sks; sourceTree = "<group>"; };
 		8449C3F720577F11003C7DE8 /* Coin2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin2.sks; sourceTree = "<group>"; };
 		8476C0C520714F64006D020B /* GameKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		8476C0C72071539F006D020B /* CybernautNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CybernautNavigationController.swift; sourceTree = "<group>"; };
@@ -88,6 +93,11 @@
 		849D57F6206CA2BF00D80ED1 /* start.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = start.caf; sourceTree = "<group>"; };
 		849D57FA206CA6CA00D80ED1 /* jetpack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jetpack.mp3; sourceTree = "<group>"; };
 		849D57FC206CAF7B00D80ED1 /* monster-crash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "monster-crash.mp3"; sourceTree = "<group>"; };
+		84A9F933207C12A1009A467C /* Coin3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin3.sks; sourceTree = "<group>"; };
+		84A9F935207C12A8009A467C /* Coin4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin4.sks; sourceTree = "<group>"; };
+		84A9F937207C12E2009A467C /* Coin5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin5.sks; sourceTree = "<group>"; };
+		84A9F939207C12F5009A467C /* Coin6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin6.sks; sourceTree = "<group>"; };
+		84A9F93B207C132E009A467C /* Coin7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Coin7.sks; sourceTree = "<group>"; };
 		84AEDCC22040F9BA004AEF18 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
 		84B0B12C20757D6600353398 /* collect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collect.mp3; sourceTree = "<group>"; };
 		84B0B12E20757DB400353398 /* pada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pada.mp3; path = ../../../Downloads/pada.mp3; sourceTree = "<group>"; };
@@ -246,8 +256,13 @@
 				84E4858D203F26A100F9A1E4 /* PlatformDiagonal.sks */,
 				84E48591203F27A900F9A1E4 /* BreakDiagonal.sks */,
 				84C9277D203F23E800711A66 /* Break5Across.sks */,
-				8449C3F5205779D3003C7DE8 /* Coin.sks */,
+				8449C3F5205779D3003C7DE8 /* Coin1.sks */,
 				8449C3F720577F11003C7DE8 /* Coin2.sks */,
+				84A9F933207C12A1009A467C /* Coin3.sks */,
+				84A9F935207C12A8009A467C /* Coin4.sks */,
+				84A9F937207C12E2009A467C /* Coin5.sks */,
+				84A9F939207C12F5009A467C /* Coin6.sks */,
+				84A9F93B207C132E009A467C /* Coin7.sks */,
 			);
 			path = "Scene Files";
 			sourceTree = "<group>";
@@ -349,16 +364,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E4858A203F260800F9A1E4 /* PlatformArrow.sks in Resources */,
+				84A9F93A207C12F5009A467C /* Coin6.sks in Resources */,
 				84C9276C203E87FB00711A66 /* Main.storyboard in Resources */,
 				84C92763203E87FB00711A66 /* GameScene.sks in Resources */,
 				847FEDA520448A4A002DEA29 /* Assets.xcassets in Resources */,
+				84A9F934207C12A1009A467C /* Coin3.sks in Resources */,
 				84C9276E203E87FB00711A66 /* Assets.xcassets in Resources */,
+				84A9F938207C12E2009A467C /* Coin5.sks in Resources */,
 				84C92771203E87FB00711A66 /* LaunchScreen.storyboard in Resources */,
 				849D57DF20697AB400D80ED1 /* PlayerTrail.sks in Resources */,
 				84E48590203F275C00F9A1E4 /* BreakArrow.sks in Resources */,
 				849D57E5206C7BCE00D80ED1 /* SpaceGame.mp3 in Resources */,
 				84B0B12F20757DB400353398 /* pada.mp3 in Resources */,
 				849D57F3206CA29800D80ED1 /* jumponmonster.mp3 in Resources */,
+				84A9F93C207C132E009A467C /* Coin7.sks in Resources */,
 				847FEDA920448FC8002DEA29 /* SmokeTrail.sks in Resources */,
 				849D57E9206C806D00D80ED1 /* bombDrop.mp3 in Resources */,
 				84C92765203E87FB00711A66 /* Actions.sks in Resources */,
@@ -375,7 +394,8 @@
 				84CF177C204E392B00C44921 /* Pixel Digivolve.otf in Resources */,
 				84E4858E203F26A100F9A1E4 /* PlatformDiagonal.sks in Resources */,
 				84C9277A203E8B6000711A66 /* Platform5Across.sks in Resources */,
-				8449C3F6205779D3003C7DE8 /* Coin.sks in Resources */,
+				84A9F936207C12A8009A467C /* Coin4.sks in Resources */,
+				8449C3F6205779D3003C7DE8 /* Coin1.sks in Resources */,
 				849D57FD206CAF7B00D80ED1 /* monster-crash.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
