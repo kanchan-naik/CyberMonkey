@@ -418,15 +418,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate, StackViewDelegate {
     
     // Updates value and position of score label
     func updateScore() {
+        let safeAreaInsets = UIApplication.shared.windows.first?.safeAreaInsets
+
         let screenSize = UIScreen.main.bounds
         let screenHeight = screenSize.height
+
+        var topMargin: CGFloat = 10.0
+
+        if let safeAreaTop = safeAreaInsets?.top, safeAreaTop > 0 {
+            topMargin += safeAreaTop
+        }
+
         let bottomOfScreenY = camera!.position.y - (size.height / 2)
-        currentScore.position.y = bottomOfScreenY + screenHeight - 10
+        currentScore.position.y = bottomOfScreenY + screenHeight - topMargin
+
         currentScore.text = String(format: "%d", GameState.sharedInstance.score)
+
         if GameState.sharedInstance.score > GameState.sharedInstance.highScore {
             currentScore.run(SKAction.scale(to: 1.5, duration: 0.25))
-            currentScore.fontColor = SKColor(red:0.99, green:0.92, blue:0.55, alpha:1.0)
+            currentScore.fontColor = SKColor(red: 0.99, green: 0.92, blue: 0.55, alpha: 1.0)
         }
+        
     }
     
     func updateCamera() {
