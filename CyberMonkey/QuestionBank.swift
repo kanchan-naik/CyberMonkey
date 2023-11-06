@@ -31,6 +31,24 @@ class QuestionBank {
         list.append(Question(questionText: "Online reputation is...", choiceA: "If you have been hacked", choiceB: "How you are feeling", choiceC: "Your nickname", choiceD: "What you and others say about yourself", correctAnswerText: 3))
         list.append(Question(questionText: "Who can have their identity stolen?", choiceA: "Just adults", choiceB: "Just teachers", choiceC: "Just children", choiceD: "Everyone", correctAnswerText: 3))
         
+        // User Privacy
+        list.append(Question(questionText: "Why is it important to keep your location settings turned off on your phone?", choiceA: " It can help your phone battery last longer.", choiceB: "It can help keep you safe from strangers.", choiceC: "It makes it easier for your parents to find you.", choiceD: "It makes it easier for your friends to find you.", correctAnswerText: 1))
+
+        // Social Media 
+        list.append(Question(questionText: "What should you do if someone you don't know sends you a message on social media?", choiceA: " Block them and tell a trusted adult.", choiceB: " Respond to their message.", choiceC: " Add them as a friend.", choiceD: " Ignore them and hope they go away.", correctAnswerText: 0))
+
+        // Digital Footprint
+        list.append(Question(questionText: "What is a digital footprint?", choiceA: "The trail of information that you leave behind as you use the internet and electronic devices.", choiceB: " The amount of time you spend on the internet each day.", choiceC: "The number of friends you have on social media.", choiceD: "Your passwords for Facebook and Instagram.", correctAnswerText: 0))
+
+        //Phishing
+        list.append(Question(questionText: "You receive an email from someone you don't know, and they say they are a prince from a faraway land. They tell you that they need your help to get their money out of the country. What should you do? ", choiceA: "Reply to the email and offer to help the prince. ", choiceB: "Delete the email and tell a trusted adult about it. ", choiceC: " Ask your parents if it's okay to reply to the email.", choiceD: "Ignore the email and hope it goes away.", correctAnswerText: 1))
+
+        //Video Game Privacy
+        list.append(Question(questionText: "When you play video games online, should you tell everyone you meet your real name?  ", choiceA: "Yes, it's okay to share your real name with people you meet online. ", choiceB: "No, it's not a good idea to share your real name with people you meet online.  ", choiceC: " Only share your real name with people you think are your age online.", choiceD: "It's okay to share your real name with people who ask for it.", correctAnswerText: 1))
+
+        // Youtube Privacy
+        list.append(Question(questionText: "What should you do if you see someone being mean to someone else in the comments section of a YouTube video?", choiceA: "Tell the person who is being mean to stop.  ", choiceB: " Report the behavior to YouTube. ", choiceC: " Ignore it and hope it goes away. ", choiceD: "Tell the person who is being mean that you understand and are there for them.", correctAnswerText: 1))
+        
         
     }
 }
